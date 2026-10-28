@@ -12,680 +12,344 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0284c7',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            900: '#0c4a6e',
-                        }
+                        brand: { 50: '#fdf4f8', 500: '#ec4899', 600: '#db2777', 700: '#be185d' }
                     },
                     animation: {
-                        'fade-in': 'fadeIn 0.3s ease-out forwards',
-                        'scale-up': 'scaleUp 0.25s ease-out forwards',
-                        'bounce-short': 'bounceShort 0.5s ease',
+                        'fade-in': 'fadeIn 0.4s ease-out forwards',
+                        'slide-up': 'slideUp 0.4s ease-out forwards',
                     },
                     keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(10px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        scaleUp: {
-                            '0%': { opacity: '0', transform: 'scale(0.95)' },
-                            '100%': { opacity: '1', transform: 'scale(1)' },
-                        },
-                        bounceShort: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-5px)' },
-                        }
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } }
                     }
                 }
             }
         }
     </script>
-    <!-- Font Awesome for Icons -->
+    <!-- FontAwesome for Key Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.3);
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-30 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Logo & Brand Name -->
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/30">
-                    S
-                </div>
-                <div>
-                    <h1 class="text-2xl font-black tracking-wider text-gray-900 dark:text-white flex items-center gap-2">
-                        STUDIO <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">MG</span>
-                    </h1>
-                    <p class="text-xs font-medium text-gray-500 dark:text-gray-400">Ireo Studio tsara indrindra eto Madagasikara</p>
-                </div>
-            </div>
-
-            <!-- Header Action Controls -->
-            <div class="flex items-center space-x-3">
-                
-                <!-- Dark Mode Toggle -->
-                <button id="theme-toggle" type="button" aria-label="Hidinika Mode" 
-                    class="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <i id="theme-toggle-dark-icon" class="hidden fa-solid fa-moon text-lg text-amber-400"></i>
-                    <i id="theme-toggle-light-icon" class="hidden fa-solid fa-sun text-lg text-amber-500"></i>
-                </button>
-
-                <!-- Admin Key Icon Toggle -->
-                <button id="admin-key-btn" type="button" aria-label="Miditra Admin" title="Kaody Admin"
-                    class="relative group p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <i class="fa-solid fa-key text-lg text-amber-500 group-hover:rotate-45 transition-transform duration-300"></i>
-                    <span id="admin-badge" class="hidden absolute -top-1 -right-1 flex h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                    </span>
-                </button>
-
-            </div>
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-slate-900/80 border-b border-slate-800 px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <h1 class="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">STUDIO MG</h1>
+        </div>
+        
+        <div class="flex items-center space-x-3">
+            <!-- Dark Mode Toggle -->
+            <button onclick="toggleDarkMode()" class="p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-yellow-400 transition">
+                <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>
+            <!-- Admin Key Icon -->
+            <button onclick="openAdminModal()" class="p-2 rounded-full bg-slate-800 hover:bg-pink-600 hover:text-white text-pink-400 transition shadow-lg shadow-pink-500/20" title="Admin Page">
+                <i class="fa-solid fa-key"></i>
+            </button>
         </div>
     </header>
 
-    <!-- ADMIN BANNER BAR (Shows when admin is logged in) -->
-    <div id="admin-bar" class="hidden bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white border-b border-indigo-700/50 animate-fade-in shadow-inner">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
-            <div class="flex items-center space-x-2">
-                <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5">
-                    <i class="fa-solid fa-user-shield"></i> Admin Aktifa
-                </span>
-                <span class="text-xs text-gray-300">Afaka manampy na mamafa studio ianao izao.</span>
-            </div>
-            <div class="flex items-center space-x-3">
-                <button id="open-add-modal-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-bold tracking-wide transition shadow-md hover:shadow-blue-500/20 flex items-center gap-2">
-                    <i class="fa-solid fa-circle-plus text-sm"></i> Hampiditra Studio
-                </button>
-                <button id="admin-logout-btn" class="px-3 py-2 bg-rose-600/20 hover:bg-rose-600/40 text-rose-200 border border-rose-500/30 rounded-lg text-xs font-semibold transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-right-from-bracket"></i> Hivoaka
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
-        <!-- Section Header -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-            <div>
-                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                    Lisitry ny Studio
-                </h2>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                    Choreographie, enregistrement, photo & video eto Madagasikara.
-                </p>
-            </div>
-            <div id="studio-count" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-blue-100 text-blue-800 dark:bg-gray-800 dark:text-blue-400 self-start md:self-auto">
-                0 Studio hita
-            </div>
+    <!-- MAIN USER PAGE -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <div class="text-center mb-8 animate-fade-in">
+            <h2 class="text-3xl font-extrabold mb-2">Ireo Studio Hita Malagasy</h2>
+            <p class="text-slate-400 text-sm">Misafidiana ary jereo ireo studio fanoratana sy fandraisam-peo manerana ny nosy.</p>
         </div>
 
-        <!-- STUDIOS CONTAINER / GRID -->
-        <div id="studios-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Studio cards will be dynamically inserted here -->
-        </div>
-
-        <!-- EMPTY STATE (Shows when no studios exist) -->
-        <div id="empty-state" class="hidden flex-col items-center justify-center py-20 px-4 text-center rounded-2xl border-2 border-dashed border-gray-300 dark:border-gray-800 bg-white/50 dark:bg-gray-900/50 my-6 animate-fade-in">
-            <div class="w-20 h-20 rounded-full bg-blue-50 dark:bg-gray-800 flex items-center justify-center text-blue-500 dark:text-blue-400 mb-4 text-3xl shadow-inner">
-                <i class="fa-solid fa-icons"></i>
+        <!-- Studio Grid List -->
+        <div id="studio-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic Studios will load here -->
+            <div id="loading-text" class="col-span-full text-center py-12 text-slate-500">
+                <i class="fa-solid fa-spinner fa-spin text-2xl mb-2"></i>
+                <p>Maka ny lisitry ny studio...</p>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Tsy mbola misy studio nampidirina</h3>
-            <p class="text-gray-500 dark:text-gray-400 max-w-md text-sm mb-6">
-                Tsy misy vaovao hatreto. Ampidiro ny code d'admin mba hahafahanao manampy studio voalohany.
-            </p>
-            <button id="empty-add-trigger" class="hidden px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition shadow-lg shadow-blue-500/25 items-center gap-2">
-                <i class="fa-solid fa-plus"></i> Hampiditra Studio Izay
-            </button>
         </div>
-
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-6 mt-12 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-500 dark:text-gray-400 space-y-2">
-            <p>&copy; <span id="year"></span> <strong class="text-gray-700 dark:text-gray-300">STUDIO MG</strong>. Zo rehetra voatokana.</p>
-            <p class="text-gray-400 dark:text-gray-500">Mampifandray amin'ireo studio tsara indrindra ho anao.</p>
-        </div>
+    <footer class="bg-slate-900 border-t border-slate-800 text-center py-4 text-xs text-slate-500">
+        &copy; 2026 STUDIO MG. Zo rehetra voatokana.
     </footer>
 
-    <!-- MODAL 1: PASSCODE AUTHENTICATION MODAL -->
-    <div id="auth-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
-        <div class="relative w-full max-w-md bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 p-6 overflow-hidden animate-scale-up">
-            
-            <button id="close-auth-modal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 p-2 rounded-lg">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-
+    <!-- ADMIN LOGIN MODAL -->
+    <div id="admin-login-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4 animate-fade-in">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-2xl p-6 shadow-2xl relative animate-slide-up">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
             <div class="text-center mb-6">
-                <div class="w-14 h-14 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-500 mx-auto flex items-center justify-center text-2xl mb-3">
+                <div class="w-12 h-12 bg-pink-500/10 text-pink-500 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
                     <i class="fa-solid fa-lock"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Fidirana Admin</h3>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Omeo ny kaody mba hahafahana manova ny studio</p>
+                <h3 class="text-lg font-bold">Fidirana Admin</h3>
+                <p class="text-xs text-slate-400">Ampidiro ny code hidirana amin'ny pejy fitantanana</p>
             </div>
-
-            <form id="auth-form" class="space-y-4">
-                <div>
-                    <label for="passcode-input" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-2">
-                        Kaody (Code Secret)
-                    </label>
-                    <div class="relative">
-                        <input type="password" id="passcode-input" required placeholder="Ampidiro ny code..." 
-                            class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition text-sm">
-                        <button type="button" id="toggle-password-visibility" class="absolute right-3 top-3.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-sm">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="auth-error" class="hidden p-3 rounded-xl bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 text-xs flex items-center gap-2">
-                    <i class="fa-solid fa-circle-exclamation text-sm"></i>
-                    <span>Tsy marina ny code nampidirinao! Manandrama indray.</span>
-                </div>
-
-                <div class="flex items-center justify-end space-x-3 pt-2">
-                    <button type="button" id="cancel-auth-btn" class="px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-xs font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                        Ajanona
-                    </button>
-                    <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold shadow-lg shadow-blue-500/25 transition">
-                        Hamarina (OK)
-                    </button>
-                </div>
+            <form onsubmit="verifyAdminCode(event)">
+                <input type="password" id="admin-code-input" placeholder="Ampidiro ny code..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm mb-4 focus:outline-none focus:border-pink-500 text-center tracking-widest" required>
+                <button type="submit" class="w-full bg-pink-600 hover:bg-pink-500 text-white font-semibold py-3 rounded-xl transition shadow-lg shadow-pink-600/30">Hiditra</button>
             </form>
-
         </div>
     </div>
 
-    <!-- MODAL 2: ADD STUDIO FORM MODAL -->
-    <div id="add-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
-        <div class="relative w-full max-w-lg bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 p-6 my-8 overflow-hidden animate-scale-up">
-            
-            <button id="close-add-modal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 p-2 rounded-lg">
-                <i class="fa-solid fa-xmark text-lg"></i>
+    <!-- ADMIN DASHBOARD MODAL -->
+    <div id="admin-dashboard-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden overflow-y-auto p-4 animate-fade-in">
+        <div class="max-w-2xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl my-8 relative">
+            <div class="flex justify-between items-center mb-6 border-b border-slate-800 pb-4">
+                <h3 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-gauge text-pink-500"></i> Admin Dashboard</h3>
+                <button onclick="closeAdminDashboard()" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Add Studio Button -->
+            <button onclick="openAddStudioModal()" class="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:opacity-90 text-white font-semibold py-3 rounded-xl mb-6 shadow-lg shadow-pink-500/20 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-plus-circle"></i> Add Studio
             </button>
 
-            <div class="mb-6">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                    <i class="fa-solid fa-plus-circle text-blue-500"></i> AMPIDIRO NY STUDIO
-                </h3>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Fenoy ny mombamomba ilay studio vaovao eto ambany.</p>
+            <!-- Admin Studio List for Deletion -->
+            <h4 class="text-sm font-semibold text-slate-400 mb-3">Lisitry ny Studio (Safidio ny hamafa):</h4>
+            <div id="admin-studio-list" class="space-y-3 max-h-96 overflow-y-auto pr-2">
+                <!-- Loaded via JS -->
             </div>
-
-            <form id="studio-form" class="space-y-4">
-                
-                <!-- 1. Studio Name -->
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1">
-                        Anaran'ny Studio <span class="text-rose-500">*</span>
-                    </label>
-                    <input type="text" id="studio-name" required placeholder="Ohatra: Studio Sound MG" 
-                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm transition">
-                </div>
-
-                <!-- 2. Location -->
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1">
-                        Toerana (Emplacement / Adresse) <span class="text-rose-500">*</span>
-                    </label>
-                    <input type="text" id="studio-location" required placeholder="Ohatra: Analakely, Antananarivo" 
-                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm transition">
-                </div>
-
-                <!-- 3. Phone Number -->
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1">
-                        Laharana Finday (Téléphone) <span class="text-rose-500">*</span>
-                    </label>
-                    <input type="tel" id="studio-phone" required placeholder="Ohatra: 034 12 345 67" 
-                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm transition">
-                </div>
-
-                <!-- 4. Facebook Link -->
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1">
-                        Lien Compte / Page Facebook <span class="text-rose-500">*</span>
-                    </label>
-                    <input type="url" id="studio-facebook" required placeholder="https://facebook.com/studio.mg" 
-                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm transition">
-                </div>
-
-                <!-- 5. Studio Image -->
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1">
-                        Sarin'ilay Studio (Image URL na File) <span class="text-rose-500">*</span>
-                    </label>
-                    <div class="space-y-2">
-                        <input type="url" id="studio-image-url" placeholder="Lien sary (URL)... https://..." 
-                            class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm transition">
-                        
-                        <div class="relative flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition cursor-pointer">
-                            <input type="file" id="studio-image-file" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                            <div class="text-center text-xs text-gray-500 dark:text-gray-400">
-                                <i class="fa-solid fa-cloud-arrow-up text-lg text-blue-500 mb-1"></i>
-                                <p><span class="font-semibold text-blue-600 dark:text-blue-400">Safidio avy ao amin'ny appareils</span> na tariho eto</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Image Preview Area -->
-                    <div id="image-preview-container" class="hidden mt-3 relative rounded-xl overflow-hidden h-36 border border-gray-200 dark:border-gray-700">
-                        <img id="image-preview" src="" alt="Sary Preview" class="w-full h-full object-cover">
-                        <button type="button" id="remove-preview-btn" class="absolute top-2 right-2 bg-rose-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-md hover:bg-rose-700 transition">
-                            <i class="fa-solid fa-x"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Form Action Buttons -->
-                <div class="flex items-center justify-end space-x-3 pt-4 border-t border-gray-200 dark:border-gray-800">
-                    <button type="button" id="cancel-add-btn" class="px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-xs font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                        Ajanona
-                    </button>
-                    <button type="submit" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-lg shadow-blue-500/30 transition flex items-center gap-2">
-                        <i class="fa-solid fa-check"></i> OK (Ampidiro)
-                    </button>
-                </div>
-
-            </form>
-
         </div>
     </div>
 
-    <!-- TOAST NOTIFICATION CONTAINER -->
-    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2"></div>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // DOM ELEMENTS & INITIAL APP STATE
-        const ADMIN_CODE = "studiomg";
-        const STORAGE_KEY = "studio_mg_data";
-
-        let studios = [];
-        let isAdminLoggedIn = false;
-
-        // UI Element Selectors
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-        const adminKeyBtn = document.getElementById('admin-key-btn');
-        const adminBadge = document.getElementById('admin-badge');
-        const adminBar = document.getElementById('admin-bar');
-        const adminLogoutBtn = document.getElementById('admin-logout-btn');
-
-        const studiosGrid = document.getElementById('studios-grid');
-        const emptyState = document.getElementById('empty-state');
-        const emptyAddTrigger = document.getElementById('empty-add-trigger');
-        const studioCountEl = document.getElementById('studio-count');
-
-        // Auth Modal Elements
-        const authModal = document.getElementById('auth-modal');
-        const closeAuthModalBtn = document.getElementById('close-auth-modal');
-        const cancelAuthBtn = document.getElementById('cancel-auth-btn');
-        const authForm = document.getElementById('auth-form');
-        const passcodeInput = document.getElementById('passcode-input');
-        const authError = document.getElementById('auth-error');
-        const togglePasswordBtn = document.getElementById('toggle-password-visibility');
-
-        // Add Modal Elements
-        const addModal = document.getElementById('add-modal');
-        const openAddModalBtn = document.getElementById('open-add-modal-btn');
-        const closeAddModalBtn = document.getElementById('close-add-modal');
-        const cancelAddBtn = document.getElementById('cancel-add-btn');
-        const studioForm = document.getElementById('studio-form');
-
-        const studioNameInput = document.getElementById('studio-name');
-        const studioLocationInput = document.getElementById('studio-location');
-        const studioPhoneInput = document.getElementById('studio-phone');
-        const studioFacebookInput = document.getElementById('studio-facebook');
-        const studioImageUrlInput = document.getElementById('studio-image-url');
-        const studioImageFileInput = document.getElementById('studio-image-file');
-
-        const imagePreviewContainer = document.getElementById('image-preview-container');
-        const imagePreview = document.getElementById('image-preview');
-        const removePreviewBtn = document.getElementById('remove-preview-btn');
-
-        // Set Current Year in Footer
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // INITIALIZATION
-        window.addEventListener('DOMContentLoaded', () => {
-            initTheme();
-            loadStudios();
-            renderStudios();
-        });
-
-        // DARK / LIGHT THEME TOGGLE LOGIC
-        function initTheme() {
-            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                lightIcon.classList.remove('hidden');
-                darkIcon.classList.add('hidden');
-            } else {
-                document.documentElement.classList.remove('dark');
-                darkIcon.classList.remove('hidden');
-                lightIcon.classList.add('hidden');
-            }
-        }
-
-        themeToggleBtn.addEventListener('click', () => {
-            darkIcon.classList.toggle('hidden');
-            lightIcon.classList.toggle('hidden');
-
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            }
-        });
-
-        // LOCAL STORAGE DATA HANDLERS
-        function loadStudios() {
-            const savedData = localStorage.getItem(STORAGE_KEY);
-            if (savedData) {
-                try {
-                    studios = JSON.parse(savedData);
-                } catch (e) {
-                    studios = [];
-                }
-            } else {
-                // Sample default data if completely empty
-                studios = [];
-            }
-        }
-
-        function saveStudios() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(studios));
-        }
-
-        // RENDER STUDIOS ON HOMEPAGE
-        function renderStudios() {
-            studiosGrid.innerHTML = '';
-            studioCountEl.textContent = `${studios.length} Studio hita`;
-
-            if (studios.length === 0) {
-                emptyState.classList.remove('hidden');
-                emptyState.classList.add('flex');
-                if (isAdminLoggedIn) {
-                    emptyAddTrigger.classList.remove('hidden');
-                    emptyAddTrigger.classList.add('inline-flex');
-                } else {
-                    emptyAddTrigger.classList.add('hidden');
-                }
-                return;
-            }
-
-            emptyState.classList.add('hidden');
-            emptyState.classList.remove('flex');
-
-            studios.forEach((studio) => {
-                const card = document.createElement('div');
-                card.className = "bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden card-hover flex flex-col justify-between animate-fade-in";
-                
-                const fallbackImg = "https://placehold.co/600x400/1e293b/ffffff?text=Studio+MG";
-
-                card.innerHTML = `
-                    <div>
-                        <!-- Image Container -->
-                        <div class="relative h-48 w-full bg-gray-200 dark:bg-gray-800 overflow-hidden">
-                            <img src="${studio.image}" 
-                                 alt="${escapeHtml(studio.name)}" 
-                                 onerror="this.onerror=null;this.src='${fallbackImg}';"
-                                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                            <span class="absolute bottom-3 left-3 text-white text-xs font-semibold px-2.5 py-1 rounded-md bg-blue-600/80 backdrop-blur-md flex items-center gap-1">
-                                <i class="fa-solid fa-location-dot"></i> ${escapeHtml(studio.location)}
-                            </span>
-                        </div>
-
-                        <!-- Card Body -->
-                        <div class="p-5">
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-1">
-                                ${escapeHtml(studio.name)}
-                            </h3>
-
-                            <div class="space-y-2 my-4 text-xs text-gray-600 dark:text-gray-300">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-7 h-7 rounded-lg bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                                        <i class="fa-solid fa-phone"></i>
-                                    </div>
-                                    <span class="font-medium">${escapeHtml(studio.phone)}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card Actions Footer -->
-                    <div class="px-5 pb-5 pt-0 flex items-center gap-2">
-                        <!-- Facebook Button -->
-                        <a href="${escapeHtml(studio.facebook)}" target="_blank" rel="noopener noreferrer"
-                           class="flex-1 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-2 shadow-md shadow-blue-500/20">
-                            <i class="fa-brands fa-facebook-f"></i> Facebook
-                        </a>
-
-                        <!-- Admin Delete Button -->
-                        ${isAdminLoggedIn ? `
-                            <button onclick="deleteStudio('${studio.id}')" 
-                                    title="Fafana ity studio ity" 
-                                    class="py-2.5 px-3 bg-rose-100 hover:bg-rose-600 text-rose-600 hover:text-white dark:bg-rose-900/30 dark:text-rose-400 dark:hover:bg-rose-600 dark:hover:text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        ` : ''}
-                    </div>
-                `;
-
-                studiosGrid.appendChild(card);
-            });
-        }
-
-        // ADMIN AUTHENTICATION LOGIC
-        adminKeyBtn.addEventListener('click', () => {
-            if (isAdminLoggedIn) {
-                showToast("Efa tafiditra amin'ny maha Admin ianao!", "info");
-            } else {
-                openAuthModal();
-            }
-        });
-
-        function openAuthModal() {
-            passcodeInput.value = '';
-            authError.classList.add('hidden');
-            authModal.classList.remove('hidden');
-            passcodeInput.focus();
-        }
-
-        function closeAuthModal() {
-            authModal.classList.add('hidden');
-        }
-
-        closeAuthModalBtn.addEventListener('click', closeAuthModal);
-        cancelAuthBtn.addEventListener('click', closeAuthModal);
-
-        togglePasswordBtn.addEventListener('click', () => {
-            const type = passcodeInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passcodeInput.setAttribute('type', type);
-            togglePasswordBtn.querySelector('i').classList.toggle('fa-eye');
-            togglePasswordBtn.querySelector('i').classList.toggle('fa-eye-slash');
-        });
-
-        authForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const enteredCode = passcodeInput.value.trim();
-
-            if (enteredCode === ADMIN_CODE) {
-                isAdminLoggedIn = true;
-                adminBar.classList.remove('hidden');
-                adminBadge.classList.remove('hidden');
-                closeAuthModal();
-                renderStudios();
-                showToast("Tafiditra Admin soa aman-tsara!", "success");
-            } else {
-                authError.classList.remove('hidden');
-                passcodeInput.classList.add('border-rose-500');
-            }
-        });
-
-        // ADMIN LOGOUT
-        adminLogoutBtn.addEventListener('click', () => {
-            isAdminLoggedIn = false;
-            adminBar.classList.add('hidden');
-            adminBadge.classList.add('hidden');
-            renderStudios();
-            showToast("Nivoaka Admin ianao.", "info");
-        });
-
-        // ADD STUDIO MODAL LOGIC
-        openAddModalBtn.addEventListener('click', openAddModal);
-        emptyAddTrigger.addEventListener('click', openAddModal);
-
-        function openAddModal() {
-            studioForm.reset();
-            imagePreviewContainer.classList.add('hidden');
-            addModal.classList.remove('hidden');
-            studioNameInput.focus();
-        }
-
-        function closeAddModal() {
-            addModal.classList.add('hidden');
-        }
-
-        closeAddModalBtn.addEventListener('click', closeAddModal);
-        cancelAddBtn.addEventListener('click', closeAddModal);
-
-        // IMAGE PREVIEW & FILE READ HANDLERS
-        studioImageUrlInput.addEventListener('input', () => {
-            const url = studioImageUrlInput.value.trim();
-            if (url) {
-                imagePreview.src = url;
-                imagePreviewContainer.classList.remove('hidden');
-            } else {
-                imagePreviewContainer.classList.add('hidden');
-            }
-        });
-
-        studioImageFileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    imagePreview.src = event.target.result;
-                    imagePreviewContainer.classList.remove('hidden');
-                    // Store base64 data onto the preview src
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        removePreviewBtn.addEventListener('click', () => {
-            studioImageUrlInput.value = '';
-            studioImageFileInput.value = '';
-            imagePreview.src = '';
-            imagePreviewContainer.classList.add('hidden');
-        });
-
-        // ADD STUDIO FORM SUBMISSION
-        studioForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const name = studioNameInput.value.trim();
-            const location = studioLocationInput.value.trim();
-            const phone = studioPhoneInput.value.trim();
-            const facebook = studioFacebookInput.value.trim();
+    <!-- ADD STUDIO FORM MODAL -->
+    <div id="add-studio-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 animate-fade-in">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-md rounded-2xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeAddStudioModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-microphone-lines text-pink-500"></i> Ampidiro Studio Vaovao</h3>
             
-            // Image fallback logic
-            let image = imagePreview.src;
-            if (!image || imagePreviewContainer.classList.contains('hidden')) {
-                image = "https://placehold.co/600x400/1e293b/ffffff?text=" + encodeURIComponent(name);
-            }
+            <form onsubmit="saveStudioToRealtimeDB(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Anaran'ilay Studio</label>
+                    <input type="text" id="studio-name" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-pink-500" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Toerana (Adresse)</label>
+                    <input type="text" id="studio-location" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-pink-500" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Nomeraona Finday</label>
+                    <input type="text" id="studio-phone" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-pink-500" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Rohy Facebook (Compte ou Page)</label>
+                    <input type="url" id="studio-fb" placeholder="https://facebook.com/..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-pink-500" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Sarin'ilay Studio (URL Sary)</label>
+                    <input type="url" id="studio-img" placeholder="https://example.com/image.jpg" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-pink-500" required>
+                </div>
+                <button type="submit" id="submit-btn" class="w-full bg-pink-600 hover:bg-pink-500 text-white font-semibold py-3 rounded-xl transition shadow-lg shadow-pink-600/30 mt-2">OK</button>
+            </form>
+        </div>
+    </div>
 
-            const newStudio = {
-                id: 'studio_' + Date.now(),
-                name,
-                location,
-                phone,
-                facebook,
-                image
-            };
+    <!-- FIREBASE REALTIME DATABASE SDKs (CDN) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, push, set, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-            studios.unshift(newStudio);
-            saveStudios();
-            renderStudios();
-            closeAddModal();
-            showToast("Tafiditra soa aman-tsara ny studio!", "success");
-        });
-
-        // DELETE STUDIO LOGIC
-        window.deleteStudio = function(id) {
-            if (!isAdminLoggedIn) return;
-
-            const studioToDelete = studios.find(s => s.id === id);
-            const confirmName = studioToDelete ? studioToDelete.name : "ity studio ity";
-
-            if (confirm(`Azo antoka ve fa tianao hofafana ny "${confirmName}"?`)) {
-                studios = studios.filter(s => s.id !== id);
-                saveStudios();
-                renderStudios();
-                showToast("Lasa voafafa ny studio.", "warning");
-            }
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB52wEcwH2_Ix_uIZ2tEgMFML1heGOVJ2g",
+            authDomain: "studio-mg-a2b0f.firebaseapp.com",
+            databaseURL: "https://studio-mg-a2b0f-default-rtdb.firebaseio.com",
+            projectId: "studio-mg-a2b0f",
+            storageBucket: "studio-mg-a2b0f.firebasestorage.app",
+            messagingSenderId: "466422379704",
+            appId: "1:466422379704:web:7c43e00855bdd4f78a704d",
+            measurementId: "G-4ZM2EV0WZN"
         };
 
-        // HELPER FUNCTIONS
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Make globally accessible
+        window.dbRef = ref(database, 'studios');
+        window.push = push;
+        window.set = set;
+        window.remove = remove;
+        window.ref = ref;
+        window.database = database;
+        window.onValue = onValue;
+
+        // Load studios on start
+        loadStudiosRealtime();
+    </script>
+
+    <!-- MAIN APP JAVASCRIPT -->
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                html.classList.add('dark');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
         }
 
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            
-            let bgClass = "bg-gray-900 text-white dark:bg-white dark:text-gray-900";
-            let icon = "fa-circle-info";
-
-            if (type === 'success') {
-                bgClass = "bg-emerald-600 text-white";
-                icon = "fa-circle-check";
-            } else if (type === 'warning') {
-                bgClass = "bg-rose-600 text-white";
-                icon = "fa-trash-can";
+        // Admin Modals Control
+        function openAdminModal() { document.getElementById('admin-login-modal').classList.remove('hidden'); }
+        function closeAdminModal() { document.getElementById('admin-login-modal').classList.add('hidden'); document.getElementById('admin-code-input').value = ''; }
+        
+        function verifyAdminCode(event) {
+            event.preventDefault();
+            const code = document.getElementById('admin-code-input').value;
+            if (code === 'studiomg') {
+                closeAdminModal();
+                document.getElementById('admin-dashboard-modal').classList.remove('hidden');
+                loadAdminStudioList();
+            } else {
+                alert('Diso ilay Code d\'admin!');
             }
+        }
 
-            toast.className = `${bgClass} px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 text-xs font-semibold animate-scale-up`;
-            toast.innerHTML = `<i class="fa-solid ${icon} text-sm"></i> <span>${escapeHtml(message)}</span>`;
+        function closeAdminDashboard() { document.getElementById('admin-dashboard-modal').classList.add('hidden'); }
+        function openAddStudioModal() { document.getElementById('add-studio-modal').classList.remove('hidden'); }
+        function closeAddStudioModal() { document.getElementById('add-studio-modal').classList.add('hidden'); }
 
-            const container = document.getElementById('toast-container');
-            container.appendChild(toast);
+        // Load Studios (Real-time)
+        function loadStudiosRealtime() {
+            const checkInterval = setInterval(() => {
+                if (window.dbRef && window.onValue) {
+                    clearInterval(checkInterval);
+                    const container = document.getElementById('studio-container');
 
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+                    window.onValue(window.dbRef, (snapshot) => {
+                        container.innerHTML = '';
+                        const data = snapshot.val();
+                        
+                        if (!data) {
+                            container.innerHTML = `
+                                <div class="col-span-full text-center py-16 text-slate-500">
+                                    <i class="fa-solid fa-folder-open text-4xl mb-3"></i>
+                                    <p class="text-sm">Tsy misy studio na inona na inona eto aloha fa mbola tsy nampian'ny Admin.</p>
+                                </div>`;
+                            return;
+                        }
+
+                        Object.keys(data).forEach((id) => {
+                            const studio = data[id];
+                            const card = document.createElement('div');
+                            card.className = "bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl hover:border-pink-500/50 transition duration-300 animate-fade-in flex flex-col";
+                            card.innerHTML = `
+                                <div class="h-48 overflow-hidden relative">
+                                    <img src="${studio.img}" alt="${studio.name}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                </div>
+                                <div class="p-5 flex-grow flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="text-lg font-bold mb-1 text-slate-100">${studio.name}</h3>
+                                        <p class="text-xs text-slate-400 flex items-center gap-1.5 mb-2"><i class="fa-solid fa-location-dot text-pink-500"></i> ${studio.location}</p>
+                                        <p class="text-xs text-slate-300 flex items-center gap-1.5 mb-4"><i class="fa-solid fa-phone text-emerald-500"></i> ${studio.phone}</p>
+                                    </div>
+                                    <a href="${studio.fb}" target="_blank" class="w-full bg-slate-800 hover:bg-blue-600 hover:text-white text-slate-200 text-xs font-semibold py-2.5 rounded-xl transition flex items-center justify-center gap-2">
+                                        <i class="fa-brands fa-facebook"></i> Tsidiho ny Facebook
+                                    </a>
+                                </div>
+                            `;
+                            container.appendChild(card);
+                        });
+                    });
+                }
+            }, 300);
+        }
+
+        // Save Studio to Realtime DB
+        async function saveStudioToRealtimeDB(event) {
+            event.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = 'Mitahiry...';
+
+            const name = document.getElementById('studio-name').value;
+            const location = document.getElementById('studio-location').value;
+            const phone = document.getElementById('studio-phone').value;
+            const fb = document.getElementById('studio-fb').value;
+            const img = document.getElementById('studio-img').value;
+
+            try {
+                const newStudioRef = window.push(window.dbRef);
+                await window.set(newStudioRef, {
+                    name, location, phone, fb, img, createdAt: Date.now()
+                });
+                closeAddStudioModal();
+                document.getElementById('studio-name').value = '';
+                document.getElementById('studio-location').value = '';
+                document.getElementById('studio-phone').value = '';
+                document.getElementById('studio-fb').value = '';
+                document.getElementById('studio-img').value = '';
+                alert('Tafiditra soa aman-tsara ao amin\'ny Database ilay Studio!');
+                loadAdminStudioList();
+            } catch (error) {
+                console.error("Nisy diso:", error);
+                alert('Tsy tafita ilay fampidirana. Jereo ny internetnao.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'OK';
+            }
+        }
+
+        // Load Admin Studio List for Deletion
+        function loadAdminStudioList() {
+            const listContainer = document.getElementById('admin-studio-list');
+            listContainer.innerHTML = '<p class="text-xs text-slate-500 text-center py-4">Maka ny angona...</p>';
+            
+            const checkInterval = setInterval(() => {
+                if (window.database && window.ref) {
+                    clearInterval(checkInterval);
+                    window.onValue(window.ref(window.database, 'studios'), (snapshot) => {
+                        listContainer.innerHTML = '';
+                        const data = snapshot.val();
+                        
+                        if (!data) {
+                            listContainer.innerHTML = '<p class="text-xs text-slate-500 text-center py-4">Mbola tsy misy studio ao anaty database.</p>';
+                            return;
+                        }
+
+                        Object.keys(data).forEach((id) => {
+                            const studio = data[id];
+                            const item = document.createElement('div');
+                            item.className = "flex items-center justify-between bg-slate-950 p-3 rounded-xl border border-slate-800 mb-2";
+                            item.innerHTML = `
+                                <div class="flex items-center gap-3">
+                                    <img src="${studio.img}" class="w-10 h-10 rounded-lg object-cover">
+                                    <div>
+                                        <h5 class="text-sm font-bold">${studio.name}</h5>
+                                        <p class="text-[10px] text-slate-400">${studio.location}</p>
+                                    </div>
+                                </div>
+                                <button onclick="deleteStudio('${id}')" class="bg-red-500/10 hover:bg-red-600 text-red-500 hover:text-white px-3 py-1.5 rounded-lg text-xs transition flex items-center gap-1">
+                                    <i class="fa-solid fa-trash"></i> Alaivo
+                                </button>
+                            `;
+                            listContainer.appendChild(item);
+                        });
+                    }, { onlyOnce: true });
+                }
+            }, 300);
+        }
+
+        // Delete Studio from Realtime DB
+        async function deleteStudio(id) {
+            if (confirm('Tena tianao hovana sy ho fafana tokoa ve ity studio ity?')) {
+                try {
+                    await window.remove(window.ref(window.database, 'studios/' + id));
+                    alert('Voafafa soa aman-tsara!');
+                    loadAdminStudioList();
+                } catch (error) {
+                    console.error(error);
+                    alert('Tsy tafita ilay fanafoanana.');
+                }
+            }
         }
     </script>
 </body>
