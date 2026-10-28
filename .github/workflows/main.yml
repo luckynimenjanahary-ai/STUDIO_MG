@@ -1,0 +1,51 @@
+name: Build Android APK for STUDIO MG
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Fandefasana ny repository code (Checkout)
+        uses: actions/checkout@v4
+
+      - name: 2. Fanamboarana ny tontolo Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 3. Fanamboarana ny Java Development Kit (JDK 17)
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: 4. Fametrahana ny Android SDK Tools
+        uses: android-actions/setup-android@v3
+
+      - name: 5. Fanomanana ny rafitra Capacitor sy Android Platform
+        run: |
+          npm init -y
+          npm install @capacitor/core @capacitor/cli @capacitor/android
+          npx cap init "STUDIO MG" "com.studiomg.app" --web-dir .
+          npx cap add android
+
+      - name: 6. Synchro ny HTML/Firebase ao anaty Android Project
+        run: |
+          npx cap copy android
+
+      - name: 7. Fanamboarana ny APK (Build Release/Debug APK)
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: 8. Fampidinana sy Fitehirizana ny APK ao amin'ny Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: STUDIO-MG-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
